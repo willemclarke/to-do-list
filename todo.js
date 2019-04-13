@@ -14,8 +14,8 @@ function appendToObject(id, toDo) {
 
 // Read data from JSON file --> if is for case where JSON object is empty
 fs.readFile(toDoStoredPath, (err, data) => {
-  if (err) {
-    return console.log("Problem with readFile");
+  if (err && err.code === 'ENOENT') {
+    data = "{}"
   }
   const readData = data.toString()
   if (readData) {
